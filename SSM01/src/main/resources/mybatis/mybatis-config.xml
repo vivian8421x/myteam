@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <!--mybatis的全局配置文件 mybatis-config 学习笔记-->
+<configuration>
+   <!--properties:加载属性文件-->
+   <!--在properties元素体内定义的属性property首先被读取-->
+   <!--其次加载properties元素体内resource或url并覆盖已读取的同名属性-->
+   <!--最后读取parameterType传递的属性，他会覆盖已读取的同名属性-->
+<!--  <properties resource="db.properties"></properties>-->
+  
+   
+  <settings>
+   <!--setting:mybatis框架在运行时可以调整一些运行参数(二级缓存/延迟加载等)-->
+   <setting name="logImpl" value="LOG4J"/>
+  </settings>
+  
+  <typeAliases>
+    <!--TypeAliases:单个别名(重点)-->
+        <!--Mapper.xml中定义了很多statement,通过parameter指定输入参数类型,resultType指定输出参数映射类型-->
+        <!--实体类需要简写时需要自定义别名   type:全路径     alias:别名-->
+        <!--去Mapper.xml修改全限定名为别名即可-->
+<!--       <typeAlias type="xyz.vivian8421.pojo.User" alias="User"/>-->
+    <!--批量别名定义:package mybatis会自动扫描定义别名 别名为类名(首字母大小写均可)-->
+       <package name="xyz.vivian8421.pojo"/>
+  </typeAliases>
+  
+<!--  <environments default="development">-->
+<!--    <environment id="development">-->
+<!--      <transactionManager type="JDBC"/>-->
+<!--      <dataSource type="POOLED">-->
+<!--        <property name="driver" value="${jdbc.driver}"/>-->
+<!--        <property name="url" value="${jdbc.url}"/>-->
+<!--        <property name="username" value="${jdbc.username}"/>-->
+<!--        <property name="password" value="${jdbc.password}"/>-->
+<!--      </dataSource>-->
+<!--    </environment>-->
+<!--  </environments>-->
+  <mappers>
+   <!-- 批量加载mapper:指定mapper接口包名，mabtis自动扫描加载 -->
+      <mapper resource="sqlmap/Admin.xml"/>
+<!--      <package name="xyz.vivian8421.mapper"/>-->
+  </mappers>
+  
+</configuration>
